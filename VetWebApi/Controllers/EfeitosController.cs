@@ -18,20 +18,21 @@ namespace VetWebApi.Controllers
             _aplicarEfeitosService = aplicarEfeitosService;
         }
 
-        
+
         [HttpPut]
-
-        public ActionResult AplicaEfeito(int animalId, int remedioId)
+        //aplica o efeito e retonar o animal
+        public ActionResult<Animal> AplicarEfeitos(int remedioId, int animalId)
         {
-            var animal = _aplicarEfeitosService.AplicarEfeitos(remedioId, animalId);
-            
-            return Ok(animal);
-        }
-        
-       
-        
-        
-        
+            try
+            {
+                Animal animal = _aplicarEfeitosService.AplicarEfeitos(remedioId, animalId);
+                return animal;
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Erro ao aplicar efeitos");
+            }
 
+        }
     }
 }
