@@ -13,7 +13,7 @@ namespace VetWebApi.Services
             _context = context;
         }
 
-        public void AplicarEfeitos(int remedioId, int animalId)
+        public Animal AplicarEfeitos(int remedioId, int animalId)
         {
             //selecionar remedio com id
             Remedio remedio = _context.Remedios.FirstOrDefault(c => c.RemedioId == remedioId);
@@ -25,8 +25,8 @@ namespace VetWebApi.Services
             ConferePressaoArterial(animal, remedio);
             ConfereHematocritos(animal, remedio);
             ConfereLeucocitos(animal, remedio);
-          
 
+            return animal;
 
         }
 
